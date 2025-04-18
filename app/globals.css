@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 0, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
+
+.digital-display {
+  font-family: "Digital-7", monospace;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  letter-spacing: 0.05em;
+}
+
+@font-face {
+  font-family: "Digital-7";
+  src: url("/fonts/digital-7.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Retro button styles */
+button {
+  transition: all 0.1s ease;
+  position: relative;
+}
+
+button:active {
+  transform: translateY(2px);
+}
+
+/* Faux 3D effect for the device */
+.retro-device {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 10px 30px rgba(0, 0, 0, 0.5), 0 2px 5px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Scanlines effect */
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.3) 51%);
+  background-size: 100% 4px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Glowing text effect */
+.glow-text {
+  text-shadow: 0 0 5px rgba(34, 211, 238, 0.7), 0 0 10px rgba(34, 211, 238, 0.5);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    text-shadow: 0 0 5px rgba(34, 211, 238, 0.7), 0 0 10px rgba(34, 211, 238, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.9), 0 0 20px rgba(34, 211, 238, 0.7);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(34, 211, 238, 0.7), 0 0 10px rgba(34, 211, 238, 0.5);
+  }
+}
+
+/* Glowing button effect */
+.glow-button {
+  box-shadow: 0 0 5px rgba(34, 211, 238, 0.5), 0 0 10px rgba(34, 211, 238, 0.3);
+}
+
+/* Retro button effect */
+.retro-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.retro-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+  border-radius: 50% 50% 0 0;
+}
+
+/* Retro slider */
+.retro-slider {
+  height: 8px;
+  border-radius: 4px;
+  background: #222;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.retro-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 5px rgba(34, 211, 238, 0.7);
+  cursor: pointer;
+}
+
+.retro-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: none;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 5px rgba(34, 211, 238, 0.7);
+  cursor: pointer;
+}
+
+/* Pixel dust animation for timer completion */
+.pixel-dust {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, #ff5555 1px, transparent 1px),
+    radial-gradient(circle, #ff8888 1px, transparent 1px), radial-gradient(circle, #ffaaaa 1px, transparent 1px);
+  background-size: 3px 3px;
+  background-position: 0 0, 2px 2px, 4px 4px;
+  animation: pixelDust 2s ease-out;
+  opacity: 0;
+}
+
+@keyframes pixelDust {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+}
+
+/* Custom scrollbar for lap times */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #222;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Ensure proper display on all browsers */
+@supports (-moz-appearance: none) {
+  .digital-display {
+    font-family: monospace;
+  }
+}
